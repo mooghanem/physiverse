@@ -1,14 +1,14 @@
 """
-╔══════════════════════════════════════════════════════════════════════════════╗
+╔════════════════════════════════════════════════════════════════════════════╗
 ║                         PhysiVerse v1.0                                      ║
 ║          Interactive Physics Simulator & Learning Platform                   ║
 ║                                                                              ║
 ║  A production-ready, error-free physics simulation web application built    ║
 ║  with Streamlit and Plotly for interactive learning and experimentation.    ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+╚════════════════════════════════════════════════════════════════════════════╝
 
 SETUP & INSTALLATION GUIDE:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 1. Install Required Dependencies:
    pip install streamlit numpy plotly pandas scipy
@@ -19,7 +19,7 @@ SETUP & INSTALLATION GUIDE:
 3. Open your browser to: http://localhost:8501
 
 FEATURES:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✓ Real-time Interactive Physics Simulations
 ✓ Live Parameter Adjustment with Instant Visualization
 ✓ Bulletproof Math with Zero-Error Guarantee
@@ -28,7 +28,7 @@ FEATURES:
 ✓ Real-World Application Examples
 ✓ Professional Dashboard with Live Metrics
 ✓ Smooth, Lag-Free Performance
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
 
 import streamlit as st
@@ -41,9 +41,9 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
 
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 # PAGE CONFIGURATION
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 
 st.set_page_config(
     page_title="PhysiVerse",
@@ -55,7 +55,7 @@ st.set_page_config(
     }
 )
 
-# Custom CSS for enhanced styling
+# Custom CSS for enhanced styling - PREMIUM SCROLLBAR
 st.markdown("""
 <style>
     :root {
@@ -67,6 +67,34 @@ st.markdown("""
         --card-bg: #1A1F2E;
     }
     
+    /* Premium Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: linear-gradient(180deg, #1a1f2e 0%, #0f1419 100%);
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #2E86DE 0%, #A23E48 100%);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(46, 134, 222, 0.4);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #3d9dff 0%, #c24d58 100%);
+        box-shadow: 0 0 15px rgba(46, 134, 222, 0.6);
+    }
+    
+    /* Firefox Scrollbar */
+    * {
+        scrollbar-color: linear-gradient(180deg, #2E86DE 0%, #A23E48 100%) #1a1f2e;
+        scrollbar-width: thin;
+    }
+    
     .header-container {
         background: linear-gradient(135deg, #2E86DE 0%, #A23E48 100%);
         padding: 2rem;
@@ -74,6 +102,7 @@ st.markdown("""
         margin-bottom: 2rem;
         color: white;
         text-align: center;
+        box-shadow: 0 8px 32px rgba(46, 134, 222, 0.2);
     }
     
     .metric-card {
@@ -82,6 +111,7 @@ st.markdown("""
         border-radius: 10px;
         border-left: 4px solid #2E86DE;
         margin: 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(46, 134, 222, 0.1);
     }
     
     .section-header {
@@ -92,6 +122,7 @@ st.markdown("""
         margin-bottom: 0.5rem;
         border-bottom: 2px solid #2E86DE;
         padding-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     
     .warning-box {
@@ -102,41 +133,21 @@ st.markdown("""
         margin: 1rem 0;
     }
     
-    .footer-top {
-        text-align: center;
-        color: #888;
-        font-size: 0.85rem;
-        margin-top: 2rem;
-        margin-bottom: 0;
+    /* Smooth animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     
-    .footer-bottom {
-        background: linear-gradient(135deg, #2E86DE 0%, #A23E48 100%);
-        padding: 1.5rem;
-        border-radius: 10px;
-        text-align: center;
-        color: white;
-        font-size: 0.8rem;
-        margin-top: 1rem;
-    }
-    
-    .footer-bottom a {
-        color: #FFB703;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s;
-    }
-    
-    .footer-bottom a:hover {
-        color: #06D6A0;
-        text-decoration: underline;
+    .stMetric {
+        animation: fadeIn 0.5s ease-in-out;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 # UTILITY FUNCTIONS - BULLETPROOF MATH & VALIDATION
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 
 def safe_divide(numerator, denominator, default=0, min_value=1e-10):
     """Safely divide with protection against division by zero."""
@@ -176,9 +187,9 @@ def clamp(value, min_val, max_val):
     """Clamp a value between min and max."""
     return max(min_val, min(max_val, value))
 
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 # PHYSICS MODULES
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 
 class PhysicsSimulator:
     """Base class for physics simulations."""
@@ -197,9 +208,9 @@ class PhysicsSimulator:
                 errors.append(f"{name} out of range")
         return errors
 
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 # MODULE 1: PROJECTILE MOTION
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 
 class ProjectileMotion(PhysicsSimulator):
     """Simulate projectile motion with air resistance."""
@@ -274,9 +285,9 @@ class ProjectileMotion(PhysicsSimulator):
             'final_velocity': final_velocity
         }
 
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 # MODULE 2: CIRCULAR MOTION
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 
 class CircularMotion(PhysicsSimulator):
     """Simulate circular motion and orbital mechanics."""
@@ -305,8 +316,8 @@ class CircularMotion(PhysicsSimulator):
         # Acceleration (centripetal)
         a_c = radius * angular_velocity**2
         
-        # Force (centripetal)
-        F_c = mass * a_c
+        # Force (centripetal) - create array instead of scalar
+        F_c = np.ones_like(t) * mass * a_c
         
         # Kinetic energy
         KE = 0.5 * mass * v**2
@@ -314,15 +325,15 @@ class CircularMotion(PhysicsSimulator):
         return {
             'x': x, 'y': y, 'theta': theta, 't': t,
             'velocity': v,
-            'centripetal_acceleration': a_c,
+            'centripetal_acceleration': np.ones_like(t) * a_c,
             'centripetal_force': F_c,
             'kinetic_energy': KE,
             'period': 2 * np.pi / max(angular_velocity, 0.01)
         }
 
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 # MODULE 3: GRAVITATIONAL ORBITS
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 
 class OrbitalMechanics(PhysicsSimulator):
     """Simulate orbital mechanics and planetary motion."""
@@ -377,9 +388,9 @@ class OrbitalMechanics(PhysicsSimulator):
             'eccentricity': eccentricity
         }
 
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 # MODULE 4: THERMODYNAMICS - IDEAL GAS LAW
-# ────────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 
 class IdealGasSimulation(PhysicsSimulator):
     """Simulate ideal gas behavior using kinetic theory."""
@@ -428,9 +439,9 @@ class IdealGasSimulation(PhysicsSimulator):
             'box_side': box_side
         }
 
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 # STREAMLIT APP
-# ════════════════════════════════════════════════════════════════════════════════
+# ════════════════════════════════════════════════════════════════════════════
 
 def main():
     # Header
@@ -456,9 +467,9 @@ def main():
             ]
         )
     
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     # SIMULATION 1: PROJECTILE MOTION
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     
     if simulation == "🚀 Projectile Motion":
         st.markdown("<div class='section-header'>🚀 Projectile Motion Simulator</div>", unsafe_allow_html=True)
@@ -609,9 +620,9 @@ def main():
                - Safety distance calculations
             """)
     
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     # SIMULATION 2: CIRCULAR MOTION
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═════════════════════════════════════════════════════════════════════��═════
     
     elif simulation == "🔄 Circular Motion":
         st.markdown("<div class='section-header'>🔄 Circular Motion Simulator</div>", unsafe_allow_html=True)
@@ -649,9 +660,9 @@ def main():
             with col1:
                 st.metric("Velocity", f"{result['velocity']:.2f} m/s")
             with col2:
-                st.metric("Centripetal Acceleration", f"{result['centripetal_acceleration']:.2f} m/s²")
+                st.metric("Centripetal Acceleration", f"{result['centripetal_acceleration'][0]:.2f} m/s²")
             with col3:
-                st.metric("Centripetal Force", f"{result['centripetal_force']:.2f} N")
+                st.metric("Centripetal Force", f"{result['centripetal_force'][0]:.2f} N")
             with col4:
                 st.metric("Period", f"{result['period']:.2f} s")
             
@@ -775,9 +786,9 @@ def main():
                - Ceiling fans and propellers
             """)
     
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     # SIMULATION 3: ORBITAL MECHANICS
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     
     elif simulation == "🪐 Orbital Mechanics":
         st.markdown("<div class='section-header'>🪐 Orbital Mechanics Simulator</div>", unsafe_allow_html=True)
@@ -991,9 +1002,9 @@ def main():
                - Neutron star and black hole orbits
             """)
     
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     # SIMULATION 4: IDEAL GAS BEHAVIOR
-    # ════════════════════════════════════════════════════════════════════════════
+    # ═══════════════════════════════════════════════════════════════════════════
     
     elif simulation == "💨 Ideal Gas Behavior":
         st.markdown("<div class='section-header'>💨 Ideal Gas Behavior Simulator</div>", unsafe_allow_html=True)
@@ -1203,19 +1214,10 @@ def main():
     # Footer
     st.markdown("---")
     st.markdown("""
-    <div class="footer-top">
-        <p><strong>PhysiVerse v1.0</strong> — An interactive physics simulator and learning platform for exploration and education.</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="footer-bottom">
-        <p style="margin-bottom: 0.5rem;"><strong>Built with ❤️ by Mohamed Khaled Ghanem</strong></p>
-        <p style="margin-bottom: 0.5rem;">
-            <a href="https://www.linkedin.com/in/mohamedkhaledghanem/" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/mooghanem" target="_blank">GitHub</a>
-        </p>
-        <p style="margin: 0;">© 2026 PhysiVerse | Educational Purpose</p>
+    <div style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 2rem;">
+        <p><strong>PhysiVerse v1.0</strong> — Built with ❤️ using Streamlit & Plotly</p>
+        <p>An interactive physics simulator and learning platform for exploration and education.</p>
+        <p style="font-size: 0.8rem;">© 2024 PhysiVerse | Educational Purpose</p>
     </div>
     """, unsafe_allow_html=True)
 
