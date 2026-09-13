@@ -1174,9 +1174,13 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 2rem;">
-        <p><strong>PhysiVerse v1.0</strong> — Built with ❤️ using Streamlit & Plotly</p>
+        <p><strong>PhysiVerse v1.0</strong> — Built with ❤️ by Mohamed Khaled Ghanem</p>
         <p>An interactive physics simulator and learning platform for exploration and education.</p>
-        <p style="font-size: 0.8rem;">© 2024 PhysiVerse | Educational Purpose</p>
+        <p style="font-size: 0.8rem;">
+            <a href="https://www.linkedin.com/in/mohamedkhaledghanem/" target="_blank" style="color: #2E86DE; text-decoration: none;">LinkedIn</a> | 
+            <a href="https://github.com/mooghanem" target="_blank" style="color: #2E86DE; text-decoration: none;">GitHub</a>
+        </p>
+        <p style="font-size: 0.8rem;">© 2026 PhysiVerse | Educational Purpose</p>
     </div>
     """, unsafe_allow_html=True)
 
