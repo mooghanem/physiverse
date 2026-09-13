@@ -101,6 +101,36 @@ st.markdown("""
         border-radius: 5px;
         margin: 1rem 0;
     }
+    
+    .footer-top {
+        text-align: center;
+        color: #888;
+        font-size: 0.85rem;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+    
+    .footer-bottom {
+        background: linear-gradient(135deg, #2E86DE 0%, #A23E48 100%);
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+    
+    .footer-bottom a {
+        color: #FFB703;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    
+    .footer-bottom a:hover {
+        color: #06D6A0;
+        text-decoration: underline;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -1173,14 +1203,19 @@ def main():
     # Footer
     st.markdown("---")
     st.markdown("""
-    <div style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 2rem;">
-        <p><strong>PhysiVerse v1.0</strong> — Built with ❤️ by Mohamed Khaled Ghanem</p>
-        <p>An interactive physics simulator and learning platform for exploration and education.</p>
-        <p style="font-size: 0.8rem;">
-            <a href="https://www.linkedin.com/in/mohamedkhaledghanem/" target="_blank" style="color: #2E86DE; text-decoration: none;">LinkedIn</a> | 
-            <a href="https://github.com/mooghanem" target="_blank" style="color: #2E86DE; text-decoration: none;">GitHub</a>
+    <div class="footer-top">
+        <p><strong>PhysiVerse v1.0</strong> — An interactive physics simulator and learning platform for exploration and education.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="footer-bottom">
+        <p style="margin-bottom: 0.5rem;"><strong>Built with ❤️ by Mohamed Khaled Ghanem</strong></p>
+        <p style="margin-bottom: 0.5rem;">
+            <a href="https://www.linkedin.com/in/mohamedkhaledghanem/" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/mooghanem" target="_blank">GitHub</a>
         </p>
-        <p style="font-size: 0.8rem;">© 2026 PhysiVerse | Educational Purpose</p>
+        <p style="margin: 0;">© 2026 PhysiVerse | Educational Purpose</p>
     </div>
     """, unsafe_allow_html=True)
 
